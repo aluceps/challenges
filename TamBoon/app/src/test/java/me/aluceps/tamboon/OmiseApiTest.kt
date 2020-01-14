@@ -3,6 +3,8 @@ package me.aluceps.tamboon
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import me.aluceps.tamboon.data.api.OmiseApi
+import me.aluceps.tamboon.data.api.OmiseApiClient
+import me.aluceps.tamboon.data.entities.Donation
 import org.junit.Ignore
 import org.junit.Test
 import retrofit2.Retrofit
@@ -31,10 +33,24 @@ class OmiseApiTest {
         val retrofit = createRetrofit()
         val api = retrofit.create(OmiseApi::class.java)
 
-        api.getChariteis()
+        OmiseApiClient(api).getChariteis()
             .test()
             .await()
             .assertNoErrors()
             .assertValue { it.any() }
+    }
+
+
+    @Test
+    @Ignore("for development")
+    fun donation_should_success() {
+        val retrofit = createRetrofit()
+        val api = retrofit.create(OmiseApi::class.java)
+
+        OmiseApiClient(api).donations(Donation("John Smith", "tokn_test_5ik016vyuyo68kuvhlu", 1000))
+            .test()
+            .await()
+            .assertNoErrors()
+            .assertNoValues()
     }
 }
