@@ -12,45 +12,69 @@
             />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:cardElevation="2dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
         >
 
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="4:3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:background="@tools:sample/backgrounds/scenic"
-            />
-
-        <TextView
-            android:id="@+id/number"
-            style="@style/TextAppearance.MaterialComponents.Caption"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/logo"
-            tools:text="@tools:sample/lorem"
-            />
+            >
 
-        <TextView
-            android:id="@+id/name"
-            style="@style/TextAppearance.MaterialComponents.Body1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/number"
-            tools:text="@tools:sample/full_names"
-            />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@android:color/darker_gray"
+                android:src="@drawable/ic_image"
+                android:tint="@android:color/background_light"
+                app:layout_constraintBottom_toBottomOf="@id/logo"
+                app:layout_constraintEnd_toEndOf="@id/logo"
+                app:layout_constraintStart_toStartOf="@id/logo"
+                app:layout_constraintTop_toTopOf="@id/logo"
+                />
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="16:9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:logo="@{itemModel.logoUrl}"
+                tools:background="@tools:sample/backgrounds/scenic"
+                />
+
+            <TextView
+                android:id="@+id/number"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@{itemModel.id}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/logo"
+                tools:text="@tools:sample/lorem"
+                />
+
+            <TextView
+                android:id="@+id/name"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@{itemModel.name}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/number"
+                tools:text="@tools:sample/full_names"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

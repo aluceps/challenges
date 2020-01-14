@@ -3,6 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     >
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="me.aluceps.tamboon.presentation.charities.CharitiesViewModel"
+            />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
