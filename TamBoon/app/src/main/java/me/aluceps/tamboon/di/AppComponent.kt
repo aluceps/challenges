@@ -9,6 +9,7 @@ import me.aluceps.tamboon.presentation.App
 @Component(modules = [
     AndroidSupportInjectionModule::class,
     AppModule::class,
+    ViewModelModule::class,
     MainActivityBuilder::class
 ])
 interface AppComponent : AndroidInjector<App> {
