@@ -2,8 +2,8 @@ package me.aluceps.tamboon.data.api
 
 import io.reactivex.Completable
 import io.reactivex.Single
-import me.aluceps.tamboon.data.entities.Charity
-import me.aluceps.tamboon.data.entities.Donation
+import me.aluceps.tamboon.data.responses.Charity
+import me.aluceps.tamboon.data.responses.Donation
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST

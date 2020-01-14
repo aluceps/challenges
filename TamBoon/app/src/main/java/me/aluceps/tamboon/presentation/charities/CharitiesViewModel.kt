@@ -1,20 +1,22 @@
 package me.aluceps.tamboon.presentation.charities
 
+import jp.keita.kagurazaka.rxproperty.toReadOnlyRxProperty
 import me.aluceps.tamboon.domain.entities.Charity
-import me.aluceps.tamboon.domain.entities.Id
-import me.aluceps.tamboon.domain.entities.LogoUrl
-import me.aluceps.tamboon.domain.entities.Name
+import me.aluceps.tamboon.domain.usecases.GetCharitiesUseCase
 import me.aluceps.tamboon.presentation.common.BaseViewModel
-import java.net.URI
+import me.aluceps.tamboon.presentation.common.addedTo
+import me.aluceps.tamboon.presentation.mappers.UseCaseObserver
 import javax.inject.Inject
 
-class CharitiesViewModel @Inject constructor() : BaseViewModel() {
+class CharitiesViewModel @Inject constructor(
+    private val useCase: GetCharitiesUseCase
+) : BaseViewModel() {
 
-    val items = mutableListOf<Charity>().apply {
-        add(Charity(Id(1), Name("aaa1"), LogoUrl(URI("http://rkdretailiq.com/news/img-corporate-baankrunoi.jpg"))))
-        add(Charity(Id(2), Name("aaa2"), LogoUrl(URI("http://rkdretailiq.com/news/img-corporate-baankrunoi.jpg"))))
-        add(Charity(Id(3), Name("aaa3"), LogoUrl(URI("http://rkdretailiq.com/news/img-corporate-baankrunoi.jpg"))))
-        add(Charity(Id(4), Name("aaa4"), LogoUrl(URI("http://rkdretailiq.com/news/img-corporate-baankrunoi.jpg"))))
-        add(Charity(Id(5), Name("aaa5"), LogoUrl(URI("http://rkdretailiq.com/news/img-corporate-baankrunoi.jpg"))))
+    private val usecaseObserver = UseCaseObserver<List<Charity>>()
+
+    val items = usecaseObserver.succeeded.toReadOnlyRxProperty().addedTo(disposable)
+
+    fun fetch() {
+        usecaseObserver.invokeUseCase(useCase, Unit)
     }
 }

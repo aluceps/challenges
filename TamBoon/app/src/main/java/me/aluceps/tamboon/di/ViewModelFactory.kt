@@ -1,4 +1,4 @@
-package me.aluceps.tamboon.presentation.common
+package me.aluceps.tamboon.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

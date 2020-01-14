@@ -6,11 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.uber.autodispose.android.lifecycle.scope
+import com.uber.autodispose.autoDisposable
 import dagger.android.support.DaggerFragment
+import io.reactivex.android.schedulers.AndroidSchedulers
 import me.aluceps.tamboon.R
 import me.aluceps.tamboon.databinding.FragmentCharitiesBinding
+import me.aluceps.tamboon.di.ViewModelFactory
 import me.aluceps.tamboon.presentation.MainActivity
-import me.aluceps.tamboon.presentation.common.ViewModelFactory
 import javax.inject.Inject
 
 class CharitiesFragment : DaggerFragment() {
@@ -36,8 +39,17 @@ class CharitiesFragment : DaggerFragment() {
         context?.let { context ->
             (activity as MainActivity).setupTitle(context.getString(R.string.title_charities))
         }
-        binding.viewModel = viewModel
         setupRecycerView()
+        viewModel.fetch()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.items.observeOn(AndroidSchedulers.mainThread())
+                .autoDisposable(scope())
+                .subscribe {
+                    listAdapter.update(it)
+                }
     }
 
     private fun setupRecycerView() {
@@ -46,7 +58,6 @@ class CharitiesFragment : DaggerFragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = listAdapter
         }
-        listAdapter.update(viewModel.items)
     }
 
     companion object {

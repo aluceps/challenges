@@ -1,4 +1,4 @@
-package me.aluceps.tamboon.data.entities
+package me.aluceps.tamboon.data.responses
 
 data class Donation(
     val name: String,

@@ -4,7 +4,7 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import me.aluceps.tamboon.data.api.OmiseApi
 import me.aluceps.tamboon.data.api.OmiseApiClient
-import me.aluceps.tamboon.data.entities.Donation
+import me.aluceps.tamboon.data.responses.Donation
 import org.junit.Ignore
 import org.junit.Test
 import retrofit2.Retrofit
