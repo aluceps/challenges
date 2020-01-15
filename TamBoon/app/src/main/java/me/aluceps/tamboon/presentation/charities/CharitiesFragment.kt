@@ -13,10 +13,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import me.aluceps.tamboon.R
 import me.aluceps.tamboon.databinding.FragmentCharitiesBinding
 import me.aluceps.tamboon.di.ViewModelFactory
+import me.aluceps.tamboon.domain.entities.Charity
+import me.aluceps.tamboon.presentation.common.ViewNavigator
 import javax.inject.Inject
 
 class CharitiesFragment : DaggerFragment() {
 
+    @Inject
+    lateinit var viewNavigator: ViewNavigator
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
@@ -53,6 +57,11 @@ class CharitiesFragment : DaggerFragment() {
 
     private fun setupRecycerView() {
         listAdapter = CharityListAdapter()
+        listAdapter.setOnClickListener(object : CharityListAdapter.OnClickListener {
+            override fun click(item: Charity) {
+                viewNavigator.navigateToDonationActivity(item)
+            }
+        })
         with(binding.recyclerView) {
             layoutManager = LinearLayoutManager(context)
             adapter = listAdapter

@@ -18,7 +18,11 @@ class CharityListAdapter : RecyclerView.Adapter<CharityViewHolder>() {
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: CharityViewHolder, position: Int) {
-        holder.bind(items[position])
+        val item = items[position]
+        holder.bind(item)
+        holder.itemView.setOnClickListener {
+            listener.click(item)
+        }
     }
 
     fun update(items: List<Charity>) {
@@ -27,6 +31,16 @@ class CharityListAdapter : RecyclerView.Adapter<CharityViewHolder>() {
             this.items.addAll(items)
             notifyDataSetChanged()
         }
+    }
+
+    interface OnClickListener {
+        fun click(item: Charity)
+    }
+
+    private lateinit var listener: OnClickListener
+
+    fun setOnClickListener(listener: OnClickListener) {
+        this.listener = listener
     }
 }
 

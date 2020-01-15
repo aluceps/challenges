@@ -3,6 +3,7 @@ package me.aluceps.tamboon.presentation.common
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import me.aluceps.tamboon.R
+import me.aluceps.tamboon.domain.entities.Charity
 import me.aluceps.tamboon.presentation.charities.CharitiesFragment
 import javax.inject.Inject
 
@@ -18,5 +19,11 @@ class ViewNavigator @Inject constructor(private val appCompatActivity: AppCompat
 
     fun navigateToCharities() {
         replaceFragment(CharitiesFragment.newInstance())
+    }
+
+    fun navigateToDonationActivity(data: Charity) {
+    }
+
+    fun navigateToDonation() {
     }
 }
