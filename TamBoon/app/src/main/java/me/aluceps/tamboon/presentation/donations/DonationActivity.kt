@@ -4,8 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import me.aluceps.tamboon.R
 import me.aluceps.tamboon.databinding.ActivityDonationBinding
+import me.aluceps.tamboon.di.ViewModelFactory
 import me.aluceps.tamboon.presentation.common.BaseActivity
 import me.aluceps.tamboon.presentation.common.ViewNavigator
 import javax.inject.Inject
@@ -14,10 +16,20 @@ class DonationActivity : BaseActivity() {
 
     @Inject
     lateinit var viewNavigator: ViewNavigator
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val binding by lazy {
+        DataBindingUtil.setContentView<ActivityDonationBinding>(this, R.layout.activity_donation)
+    }
+
+    private val viewModel by lazy {
+        ViewModelProviders.of(this, viewModelFactory).get(DonationViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DataBindingUtil.setContentView<ActivityDonationBinding>(this, R.layout.activity_donation)
+        binding.viewModel = viewModel
         viewNavigator.navigateToDonation()
     }
 
