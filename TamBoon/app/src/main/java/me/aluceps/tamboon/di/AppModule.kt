@@ -7,8 +7,8 @@ import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers
 import me.aluceps.tamboon.R
-import me.aluceps.tamboon.data.api.OmiseApi
-import me.aluceps.tamboon.data.api.OmiseApiClient
+import me.aluceps.tamboon.data.api.LocalOmiseApi
+import me.aluceps.tamboon.data.api.LocalOmiseApiClient
 import me.aluceps.tamboon.data.repositories.CharitiesRepositoryImpl
 import me.aluceps.tamboon.domain.repositories.CharitiesRepository
 import me.aluceps.tamboon.domain.usecases.GetCharitiesUseCase
@@ -27,19 +27,27 @@ internal object AppModule {
             .build()
 
     @Singleton @Provides @JvmStatic
-    fun provideRetrofit(application: Application, moshi: Moshi): Retrofit =
+    fun provideLocalOmiseApi(application: Application, moshi: Moshi): LocalOmiseApi =
         Retrofit.Builder()
-            .baseUrl("http://${application.resources.getString(R.string.api_host)}/")
+            .baseUrl("http://${application.resources.getString(R.string.api_local_host)}/")
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .build()
+            .build().let { retrofit ->
+                LocalOmiseApiClient(retrofit.create(LocalOmiseApi::class.java))
+            }
+
+//    @Singleton @Provides @JvmStatic
+//    fun provideRemoteOmiseApi(application: Application, moshi: Moshi): LocalOmiseApi =
+//            Retrofit.Builder()
+//                    .baseUrl("http://${application.resources.getString(R.string.api_remote_host)}/")
+//                    .addConverterFactory(MoshiConverterFactory.create(moshi))
+//                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//                    .build().let { retrofit ->
+//                        LocalOmiseApiClient(retrofit.create(LocalOmiseApi::class.java))
+//                    }
 
     @Singleton @Provides @JvmStatic
-    fun provideOmiseApi(retrofit: Retrofit): OmiseApi =
-        OmiseApiClient(retrofit.create(OmiseApi::class.java))
-
-    @Singleton @Provides @JvmStatic
-    fun provideCharitiesRepository(api: OmiseApi): CharitiesRepository =
+    fun provideCharitiesRepository(api: LocalOmiseApi): CharitiesRepository =
         CharitiesRepositoryImpl(api)
 
     @Singleton @Provides @JvmStatic

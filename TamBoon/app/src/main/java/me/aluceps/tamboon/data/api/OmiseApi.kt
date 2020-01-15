@@ -10,7 +10,7 @@ import retrofit2.http.POST
 import javax.inject.Singleton
 
 @Singleton
-interface OmiseApi {
+interface LocalOmiseApi {
 
     @GET("charities")
     fun getChariteis(): Single<List<Charity>>
@@ -19,4 +19,10 @@ interface OmiseApi {
     fun donations(@Body donation: Donation): Completable
 }
 
-class OmiseApiClient(private val core: OmiseApi) : OmiseApi by core
+class LocalOmiseApiClient(private val core: LocalOmiseApi) : LocalOmiseApi by core
+
+//@Singleton
+//interface RemoteOmiseApi {
+//}
+//
+//class RemoteOmiseApiClient(private val core: RemoteOmiseApi) : RemoteOmiseApi by core

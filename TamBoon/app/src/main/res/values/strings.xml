@@ -2,6 +2,9 @@
     <string name="app_name">TamBoon</string>
     <string name="title_charities">Charity List</string>
     <string name="title_donation">Donation</string>
+    <string name="button_donation">donate</string>
 
-    <string name="api_host">192.168.100.66:8080</string>
+    <string name="api_local_host">192.168.100.66:8080</string>
+    <string name="api_remote_host">vault.omise.co</string>
+    <string name="api_public_key">pkey_test_5iiiqo5zrn6esx4suxi</string>
 </resources>
