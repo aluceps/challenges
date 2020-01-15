@@ -2,5 +2,5 @@
     <string name="app_name">TamBoon</string>
     <string name="title_charities">Charity List</string>
 
-    <string name="api_host">127.0.0.1:8080</string>
+    <string name="api_host">192.168.100.66:8080</string>
 </resources>
