@@ -13,7 +13,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import me.aluceps.tamboon.R
 import me.aluceps.tamboon.databinding.FragmentCharitiesBinding
 import me.aluceps.tamboon.di.ViewModelFactory
-import me.aluceps.tamboon.presentation.MainActivity
 import javax.inject.Inject
 
 class CharitiesFragment : DaggerFragment() {
@@ -37,7 +36,7 @@ class CharitiesFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         context?.let { context ->
-            (activity as MainActivity).setupTitle(context.getString(R.string.title_charities))
+            (activity as CharitiesActivity).setupTitle(context.getString(R.string.title_charities))
         }
         setupRecycerView()
         viewModel.fetch()

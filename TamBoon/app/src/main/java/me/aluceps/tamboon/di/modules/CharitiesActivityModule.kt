@@ -7,23 +7,23 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
 import me.aluceps.tamboon.di.ViewModelKey
-import me.aluceps.tamboon.presentation.MainActivity
+import me.aluceps.tamboon.presentation.charities.CharitiesActivity
 import me.aluceps.tamboon.presentation.charities.CharitiesFragment
 import me.aluceps.tamboon.presentation.charities.CharitiesViewModel
 
 @Module
-interface MainActivityBuilder {
+interface CharitiesActivityBuilder {
     @ContributesAndroidInjector(modules = [
-        MainActivityModule::class
+        CharitiesActivityModule::class
     ])
 
-    fun contributeMainActivity(): MainActivity
+    fun contributeMainActivity(): CharitiesActivity
 }
 
 @Module
-interface MainActivityModule {
+interface CharitiesActivityModule {
     @Binds
-    fun providesAppCompatActivity(activity: MainActivity): AppCompatActivity
+    fun providesAppCompatActivity(activity: CharitiesActivity): AppCompatActivity
 
     @ContributesAndroidInjector
     fun contributeCharitiesFragment(): CharitiesFragment

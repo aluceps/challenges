@@ -14,6 +14,7 @@ class CharitiesViewModel @Inject constructor(
 
     private val usecaseObserver = UseCaseObserver<List<Charity>>()
 
+    val processing = usecaseObserver.processing.toReadOnlyRxProperty().addedTo(disposable)
     val items = usecaseObserver.succeeded.toReadOnlyRxProperty().addedTo(disposable)
 
     fun fetch() {
