@@ -6,6 +6,7 @@ import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import me.aluceps.tamboon.di.modules.CharitiesActivityBuilder
+import me.aluceps.tamboon.di.modules.DonationActivityBuilder
 import me.aluceps.tamboon.presentation.App
 import javax.inject.Singleton
 
@@ -14,7 +15,8 @@ import javax.inject.Singleton
     AndroidSupportInjectionModule::class,
     AppModule::class,
     ViewModelModule::class,
-    CharitiesActivityBuilder::class
+    CharitiesActivityBuilder::class,
+    DonationActivityBuilder::class
 ])
 interface AppComponent : AndroidInjector<App> {
 

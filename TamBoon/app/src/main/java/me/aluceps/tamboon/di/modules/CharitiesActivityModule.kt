@@ -17,7 +17,7 @@ interface CharitiesActivityBuilder {
         CharitiesActivityModule::class
     ])
 
-    fun contributeMainActivity(): CharitiesActivity
+    fun contributeCharitiesActivity(): CharitiesActivity
 }
 
 @Module
