@@ -6,7 +6,7 @@ SERVER_BIN := tamboon-server
 default: run
 
 build: $(SERVER_BIN)
-$(SERVER_BIN):
+# $(SERVER_BIN):
 	/usr/bin/env \
 		CGO_ENABLED=0 \
 		go build -o $(SERVER_BIN) -a -ldflags '-extldflags "-static"' \
